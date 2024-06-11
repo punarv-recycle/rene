@@ -1,10 +1,12 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import supabase from "./utils"; // Ensure the path is correct
+import {  useNavigate } from "react-router-dom";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [role, setRole] = useState(null);
+  const navigate = useNavigate(); // Use useNavigate hook
 
   useEffect(() => {
     const fetchUserRole = async (userId) => {
@@ -21,16 +23,21 @@ export const AuthProvider = ({ children }) => {
       }
     };
 
-    const fetchUser = async () => {
-      const { data: sessionData, error } = await supabase.auth.getSession();
-      if (error) {
-        console.error("Error fetching session:", error);
-      } else {
-        const userId = sessionData.session.user.id;
-
-        fetchUserRole(userId); // Fetch the role using the user ID
-      }
-    };
+        const fetchUser = async () => {
+            const { data: sessionData, error } = await supabase.auth.getSession();
+            if (error) {
+              console.error("Error fetching session:", error);
+            } else {
+              if (!sessionData || !sessionData.session || !sessionData.session.user) {
+                // Redirect to login if user session data is not available
+                navigate("/login", { replace: true });
+                return;
+              }
+        
+              const userId = sessionData.session.user.id;
+              fetchUserRole(userId); // Fetch the role using the user ID
+            }
+          };
 
     fetchUser();
   }, []);

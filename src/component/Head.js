@@ -14,6 +14,7 @@ import supabase from "./utils";
 
 const Head = () => {
   const { role } = useAuth();
+  // console.log(role)
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
   const handleLogout = async () => {
@@ -107,29 +108,6 @@ const Hamburger = styled.div`
   }
 `;
 
-// const NavLinks = styled.ul`
-//   display: flex;
-//   list-style-type: none;
-//   align-items: center;
-//   gap: 30px;
-//   font-weight: bold;
-//   font-size: 20px;
-//   @media screen and (max-width: 768px) {
-//     flex-direction: column;
-//     background-color: #fff;
-//     position: absolute;
-//     z-index: 10;
-//     top: 70px;
-//     left: 0;
-//     right: 0;
-//     gap: 10px;
-//     padding: 20px 0;
-//     transition: all 0.3s ease;
-//     transform: ${({ menuOpen }) =>
-//       menuOpen ? "translateY(0)" : "translateY(-200%)"};
-//     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-//   }
-// `;
 
 const NavLinks = styled.ul`
   display: flex;

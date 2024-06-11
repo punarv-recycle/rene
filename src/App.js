@@ -11,7 +11,6 @@ import Form1 from "./component/Form1";
 import Form2 from "./component/Form2";
 import PendingRequests from "./component/PendingRequests";
 import History from "./component/History";
-import Dashboard from "./component/Dashboard";
 import DailyUpdates from "./component/DailyUpdates";
 import SalesTable from "./component/SalesTable";
 // Function to simulate authentication
@@ -30,7 +29,6 @@ const ProtectedRoute = ({ path, element: Element }) => {
 
 const App = () => {
   return (
-    <BrowserRouter>
       <Routes>
         <Route path="/" element={<Basepage />} />
         <Route path="/login" element={<Login />} />
@@ -52,16 +50,11 @@ const App = () => {
         />
         <Route path="/history" element={<ProtectedRoute element={History} />} />
         <Route
-          path="/dashboard"
-          element={<ProtectedRoute element={Dashboard} />}
-        />
-        <Route
           path="/dailyUpdates"
           element={<ProtectedRoute element={DailyUpdates} />}
         />
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </BrowserRouter>
   );
 };
 
