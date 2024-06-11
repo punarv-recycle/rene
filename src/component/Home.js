@@ -6,6 +6,11 @@ import { Link, Navigate } from "react-router-dom";
 import Head from './Head';
 
 const Home = () => {
+
+  if (!localStorage.getItem("token")) {
+    return <Navigate replace to="/login" />;
+  }
+
   if (!localStorage.getItem("token")) {
     return <Navigate replace to="/login" />;
   }

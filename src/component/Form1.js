@@ -62,7 +62,7 @@ const Form1 = () => {
         setCheckedItems({});
         message.success('Form submitted successfully!');
         setTimeout(() => {
-          navigate("/sale", { replace: true });
+          navigate("/requestform", { replace: true });
         }, 1000);
       } catch (error) {
         console.error('Error inserting data:', error);

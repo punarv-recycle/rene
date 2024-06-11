@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const fetchUserRole = async (userId) => {
       const { data: profileData, error: profileError } = await supabase
-        .from("profiles")
+        .from("Profiles")
         .select("role")
         .eq("id", userId)
         .single();

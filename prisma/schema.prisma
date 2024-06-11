@@ -124,3 +124,25 @@ model Form2 {
   cocopeat           Json?
   total_sale_amount  Float
 }
+
+model Volunteer {
+  id           Int      @id @default(autoincrement())
+  uuid         String   @unique
+  user_id      String
+  full_name    String
+  email        String
+  phone_number String
+  address      String
+  city         String
+  state        String
+  pin_code     String
+  created_at   DateTime @default(now())
+}
+// Define the schema for the Profiles table
+model Profiles {
+  // Primary key
+  id         String   @id @default(uuid())
+  email  String?
+  role   String?
+
+}

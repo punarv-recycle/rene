@@ -50,7 +50,11 @@ const Head = () => {
               </NavItem>
               <NavItem to="/pending-requests" onClick={() => setMenuOpen(false)}>
                 <MdOutlinePendingActions size={25} className="icons" />
-                <span className="text">Requests</span>
+                <span className="text">Request</span>
+              </NavItem>
+              <NavItem to="/volunteer" onClick={() => setMenuOpen(false)}>
+                <MdOutlinePendingActions size={25} className="icons" />
+                <span className="text">Volunteer</span>
               </NavItem>
             </>
           ) : (
@@ -63,7 +67,10 @@ const Head = () => {
                 <FaHistory size={25} className="icons" />
                 <span className="text">History</span>
               </NavItem>
-             
+              <NavItem to="/volunteerform" onClick={() => setMenuOpen(false)}>
+                <FaHistory size={25} className="icons" />
+                <span className="text">Volunteer</span>
+              </NavItem>
             </>
           )
         ) : null}
