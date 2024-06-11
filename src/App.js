@@ -13,6 +13,7 @@ import PendingRequests from "./component/PendingRequests";
 import History from "./component/History";
 import Dashboard from "./component/Dashboard";
 import DailyUpdates from "./component/DailyUpdates";
+import SalesTable from "./component/SalesTable";
 // Function to simulate authentication
 const isAuthenticated = () => {
   // Check if a token exists in local storage
@@ -38,18 +39,19 @@ const App = () => {
           path="/dailyUpdatesform"
           element={<ProtectedRoute element={Form} />}
         />
-        <Route path="/Request" element={<ProtectedRoute element={Form1} />} />
-        <Route path="/sale" element={<ProtectedRoute element={Form2} />} />
+        <Route path="/salesform" element={<ProtectedRoute element={Form2} />} />
+        <Route
+          path="/Requestform"
+          element={<ProtectedRoute element={Form1} />}
+        />
+        <Route path="/sale" element={<ProtectedRoute element={SalesTable} />} />
         <Route path="/home" element={<ProtectedRoute element={Home} />} />
         <Route
           path="/pending-requests"
           element={<ProtectedRoute element={PendingRequests} />}
         />
+        <Route path="/history" element={<ProtectedRoute element={History} />} />
         <Route
-          path="/history"
-          element={<ProtectedRoute element={History} />}
-        />
-         <Route
           path="/dashboard"
           element={<ProtectedRoute element={Dashboard} />}
         />

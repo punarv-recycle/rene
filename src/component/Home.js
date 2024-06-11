@@ -22,7 +22,7 @@ const Home = () => {
           <p className="hero-para">
             Join us in making the city cleaner and greener by contributing to our waste collection and management program.
           </p>
-          <Link to="/request">
+          <Link to="/requestform">
             <button className="hero-btn">Raise A Request</button>
           </Link>
           <p className="hero-optimise">Sustainability</p>
@@ -67,14 +67,146 @@ const Home = () => {
 
 export default Home;
 
+// const Herobanner = styled.div`
+//   position: relative;
+//   padding: 20px;
+//   text-align: left; /* Aligning the top section to the left */
+
+//   .matter-div {
+//     margin-bottom: 20px;
+//     margin-left: 20px; /* Adding left margin */
+//   }
+
+//   .hero-caption {
+//     color: #228b22;
+//     font-weight: 600;
+//     font-size: 40px;
+//   }
+
+//   .hero-heading {
+//     font-weight: 700;
+//     margin-bottom: 23px;
+//     margin-top: 30px;
+//     font-size: 70px;
+//   }
+
+//   .hero-para {
+//     font-size: 22px;
+//     font-family: Alegreya;
+//     line-height: 35px;
+//     width: 500px;
+//   }
+
+//   .hero-btn {
+//     margin-top: 45px;
+//     text-decoration: none;
+//     width: 300px;
+//     text-align: center;
+//     background: #228b22;
+//     padding: 14px;
+//     font-size: 22px;
+//     text-transform: none;
+//     color: white;
+//     border-radius: 4px;
+//     border: 0px;
+//   }
+
+//   .hero-optimise {
+//     font-weight: 600;
+//     color: #228b22;
+//     font-size: 100px;
+//     opacity: 0.1;
+//     margin-right: 20px;
+//   }
+
+//   .hero-banner-img {
+//     margin-top: 20px;
+//     width: 100%;
+//     max-width: 600px;
+//   }
+
+//   @media screen and (max-width: 1350px) {
+//     .hero-banner-img {
+//       width: 100%;
+//       max-width: 500px;
+//     }
+
+//     .hero-optimise {
+//       font-size: 150px;
+//     }
+//   }
+
+//   @media screen and (max-width: 568px) {
+//     .matter-div {
+//       width: 80%;
+//       margin: 0 auto;
+//     }
+
+//     .hero-caption {
+//       font-size: 20px;
+//     }
+
+//     .hero-heading {
+//       font-weight: 700;
+//       margin-bottom: 23px;
+//       margin-top: 30px;
+//       font-size: 50px;
+//     }
+
+//     .hero-para {
+//       font-size: 18px;
+//       line-height: 28px;
+//       width:350px;
+//     }
+
+//     .hero-btn {
+//       width: 250px;
+//     }
+
+//     .hero-optimise {
+//       display: none;
+//     }
+//   }
+// `;
+
+// const Content = styled.div`
+//   padding: 20px;
+//   max-width: 1200px;
+//   margin: 0 auto;
+//   text-align: left;
+
+//   h2 {
+//     color: #228b22;
+//     font-size: 36px;
+//     margin-bottom: 10px;
+//   }
+
+//   p, ul {
+//     font-size: 18px;
+//     line-height: 28px;
+//     margin-bottom: 20px;
+//   }
+
+//   ul {
+//     padding-left: 20px;
+//   }
+
+//   li {
+//     margin-bottom: 10px;
+//   }
+// `;
+
+// const Section = styled.section`
+//   margin-bottom: 40px;
+// `;
 const Herobanner = styled.div`
   position: relative;
   padding: 20px;
-  text-align: left; /* Aligning the top section to the left */
+  text-align: left;
 
   .matter-div {
     margin-bottom: 20px;
-    margin-left: 20px; /* Adding left margin */
+    margin-left: 20px;
   }
 
   .hero-caption {
@@ -123,11 +255,11 @@ const Herobanner = styled.div`
     margin-top: 20px;
     width: 100%;
     max-width: 600px;
+    display: block; /* Ensure the image is displayed */
   }
 
   @media screen and (max-width: 1350px) {
     .hero-banner-img {
-      width: 100%;
       max-width: 500px;
     }
 
@@ -136,27 +268,29 @@ const Herobanner = styled.div`
     }
   }
 
-  @media screen and (max-width: 568px) {
+  @media screen and (max-width: 1082px) {
+    .hero-banner-img {
+      display: none; /* Hide the image */
+    }
+  }
+
+  @media screen and (max-width: 768px) {
     .matter-div {
-      width: 80%;
-      margin: 0 auto;
+      margin-left: 0;
+      text-align: center;
     }
 
     .hero-caption {
-      font-size: 20px;
+      font-size: 30px;
     }
 
     .hero-heading {
-      font-weight: 700;
-      margin-bottom: 23px;
-      margin-top: 30px;
       font-size: 50px;
     }
 
     .hero-para {
-      font-size: 18px;
-      line-height: 28px;
-      width:350px;
+      width: 100%;
+      padding: 0 20px;
     }
 
     .hero-btn {
@@ -167,7 +301,27 @@ const Herobanner = styled.div`
       display: none;
     }
   }
+
+  @media screen and (max-width: 568px) {
+    .hero-heading {
+      font-size: 40px;
+    }
+
+    .hero-para {
+      font-size: 18px;
+      line-height: 28px;
+    }
+
+    .hero-btn {
+      width: 200px;
+    }
+
+    .hero-banner-img {
+      max-width: 350px;
+    }
+  }
 `;
+
 
 const Content = styled.div`
   padding: 20px;

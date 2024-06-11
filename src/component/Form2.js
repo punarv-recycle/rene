@@ -3,6 +3,7 @@ import { Checkbox, Input, Button, message, Form as AntdForm } from "antd";
 import { v4 as uuidv4 } from "uuid";
 import Head from "./Head";
 import supabase from "./utils"; // Make sure the path is correct
+import { useNavigate } from "react-router-dom";
 
 const { Item } = AntdForm;
 
@@ -35,6 +36,7 @@ const Form2 = () => {
   const [form] = AntdForm.useForm();
   const [checkedItems, setCheckedItems] = useState({});
   const [userId, setUserId] = useState(null);
+  const navigate = useNavigate(); // Use useNavigate hook
 
   useEffect(() => {
     setUserId(localStorage.getItem("user_id"));
@@ -106,11 +108,11 @@ const Form2 = () => {
         formattedData.total_sale_amount = totalSaleAmount;
   
         // Log or use the formatted data as needed
-        console.log("Formatted Data:", formattedData);
+        // console.log("Formatted Data:", formattedData);
   
         try {
           // Insert the formatted data into the Supabase Form2 table
-          const { data, error } = await supabase
+          const { error } = await supabase
             .from("Form2")
             .insert([formattedData]);
   
@@ -118,7 +120,7 @@ const Form2 = () => {
             throw error;
           }
   
-          console.log("Inserted Data:", data);
+          // console.log("Inserted Data:", data);
           form.resetFields();
           setCheckedItems({})
           message.success(
@@ -126,6 +128,9 @@ const Form2 = () => {
               2
             )}`
           );
+          setTimeout(() => {
+            navigate("/sale", { replace: true });
+          }, 1000);
         } catch (error) {
           console.error("Error inserting data:", error);
           message.error("Failed to submit form.");
@@ -137,70 +142,7 @@ const Form2 = () => {
       });
   };
   
-  // const handleSubmit = async () => {
-  //   form
-  //     .validateFields()
-  //     .then((values) => {
-  //       // Create an empty object to store the formatted data
-  //       const formattedData = {
-  //         uuid: uuidv4(),
-  //         date: values.date,
-  //         time: values.time,
-  //         buyer_name: values.buyerName,
-  //         organisation_name: values.organisationName,
-  //         address: values.address,
-  //         gst: values.gst,
-  //         aadhar_card_number: values.aadharCardNumber,
-  //         pan_card_number: values.panCardNumber,
-  //         email: values.email,
-  //         mobile_number: values.mobileNumber,
-  //       };
 
-  //       // Iterate over the received values
-  //       Object.entries(wasteTypes).forEach(([category, types]) => {
-  //         types.forEach((type) => {
-  //           const weightKey = `${type}Weight`;
-  //           const priceKey = `${type}Price`;
-  //           if (values[weightKey] && values[priceKey]) {
-  //             formattedData[type.replace(/ /g, "_").toLowerCase()] = {
-  //               weight: parseFloat(values[weightKey]),
-  //               price_per_kg: parseFloat(values[priceKey]),
-  //             };
-  //           } else {
-  //             formattedData[type.replace(/ /g, "_").toLowerCase()] = null;
-  //           }
-  //         });
-  //       });
-
-  //       // Calculate total sale amount
-  //       let totalSaleAmount = 0;
-  //       Object.entries(values).forEach(([key, value]) => {
-  //         if (key.endsWith("Weight")) {
-  //           const type = key.slice(0, -6);
-  //           const weight = parseFloat(value || 0);
-  //           const pricePerKg = parseFloat(values[`${type}Price`] || 0);
-  //           totalSaleAmount += weight * pricePerKg;
-  //         }
-  //       });
-
-  //       formattedData.total_sale_amount = totalSaleAmount;
-
-  //       // Log or use the formatted data as needed
-  //       console.log("Formatted Data:", formattedData);
-
-  //       // Reset the form fields
-  //       form.resetFields();
-  //       message.success(
-  //         `Form submitted successfully! Total Sale Amount: ₹${totalSaleAmount.toFixed(
-  //           2
-  //         )}`
-  //       );
-  //     })
-  //     .catch((errorInfo) => {
-  //       console.log("Validation failed:", errorInfo);
-  //       message.error("Please fill in all the required fields.");
-  //     });
-  // };
 
   return (
     <>
@@ -231,74 +173,66 @@ const Form2 = () => {
             <Input type="time" />
           </Item>
           <Item
-            label="Buyer Name"
-            name="buyerName"
-            rules={[{ required: true, message: "Please enter the buyer name" }]}
-          >
-            <Input placeholder="Enter Buyer Name" />
-          </Item>
-          <Item
-            label="Organisation Name"
-            name="organisationName"
-            rules={[
-              { required: true, message: "Please enter the organisation name" },
-            ]}
-          >
-            <Input placeholder="Enter Organisation Name" />
-          </Item>
-          <Item
-            label="Address"
-            name="address"
-            rules={[{ required: true, message: "Please enter the address" }]}
-          >
-            <Input.TextArea placeholder="Enter Address (separate with comma)" />
-          </Item>
-          <Item
-            label="GST"
-            name="gst"
-            rules={[
-              { required: false, message: "Please enter the GST number" },
-            ]}
-          >
-            <Input placeholder="Enter GST" />
-          </Item>
-          <Item
-            label="Aadhar Card Number"
-            name="aadharCardNumber"
-            rules={[
-              {
-                required: false,
-                message: "Please enter the Aadhar card number",
-              },
-            ]}
-          >
-            <Input placeholder="Enter Aadhar Card Number" />
-          </Item>
-          <Item
-            label="Pan Card Number"
-            name="panCardNumber"
-            rules={[
-              { required: false, message: "Please enter the PAN card number" },
-            ]}
-          >
-            <Input placeholder="Enter PAN Card Number" />
-          </Item>
-          <Item
-            label="Email"
-            name="email"
-            rules={[{ required: true, message: "Please enter the email" }]}
-          >
-            <Input placeholder="Enter Email" />
-          </Item>
-          <Item
-            label="Mobile Number"
-            name="mobileNumber"
-            rules={[
-              { required: true, message: "Please enter the mobile number" },
-            ]}
-          >
-            <Input placeholder="Enter Mobile Number" />
-          </Item>
+  label="GST"
+  name="gst"
+  rules={[
+    { 
+      pattern: /^[0-9]{15}$/,
+      message: "Please enter a valid GST number with 15 digits",
+    },
+  ]}
+>
+  <Input placeholder="Enter GST" />
+</Item>
+<Item
+  label="Aadhar Card Number"
+  name="aadharCardNumber"
+  rules={[
+    {
+      pattern: /^[0-9]{12}$/,
+      message: "Please enter a valid Aadhar card number with 12 digits",
+    },
+  ]}
+>
+  <Input placeholder="Enter Aadhar Card Number" />
+</Item>
+<Item
+  label="Pan Card Number"
+  name="panCardNumber"
+  rules={[
+    {
+      pattern: /^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/,
+      message: "Please enter a valid PAN card number",
+    },
+  ]}
+>
+  <Input placeholder="Enter PAN Card Number" />
+</Item>
+<Item
+  label="Email"
+  name="email"
+  rules={[
+    { 
+      type: 'email',
+      message: "Please enter a valid email address",
+    },
+  ]}
+>
+  <Input placeholder="Enter Email" />
+</Item>
+<Item
+  label="Mobile Number"
+  name="mobileNumber"
+  rules={[
+    { 
+      pattern: /^[6-9]\d{9}$/,
+      message: "Please enter a valid 10-digit mobile number starting with 6, 7, 8, or 9",
+    },
+  ]}
+>
+  <Input placeholder="Enter Mobile Number" />
+</Item>
+
           {Object.entries(wasteTypes).map(([category, types]) => (
             <div key={category}>
               <h3>{category}</h3>

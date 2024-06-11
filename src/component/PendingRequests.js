@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Table, Button, message, Grid, Tabs, DatePicker } from "antd";
 import supabase from "./utils"; // Make sure the path is correct
 import Head from "./Head";
-import { RiAddLine } from 'react-icons/ri';
 import { Link } from "react-router-dom";
 
 const { useBreakpoint } = Grid;
@@ -127,9 +126,9 @@ const PendingRequests = () => {
       <div style={{ border: "1px solid #d9d9d9", padding: "16px", borderRadius: "4px", marginBottom: "16px" }}>
         <div style={{display:"Flex",flexDirection:"row",justifyContent:"space-between"}}>
       <h2 style={{ marginBottom: "16px", marginTop: "0" }}>Requests</h2>
-      <Link to="/request" style={{color:'black',textDecoration:"none"}}>
-      <Button style={{ display: "flex", alignItems: "center" }}>
-        <RiAddLine style={{ marginRight: "8px" }} />
+      <Link to="/requestform" style={{color:'black',textDecoration:"none"}}>
+      <Button type='primary' style={{ display: "flex", alignItems: "center" }}>
+        
         New Request
       </Button>
       </Link>

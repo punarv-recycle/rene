@@ -10,6 +10,7 @@ import {
 import { v4 as uuidv4 } from "uuid";
 import Head from "./Head";
 import supabase from "./utils"; // Make sure the path is correct
+import { useNavigate } from "react-router-dom";
 
 const { Panel } = Collapse;
 const { Item } = AntdForm;
@@ -62,6 +63,7 @@ const Form = () => {
   const [form] = AntdForm.useForm();
   const [checkedItems, setCheckedItems] = useState({});
   const [userId, setUserId] = useState(null);
+  const navigate = useNavigate(); // Use useNavigate hook
 
   useEffect(() => {
     setUserId(localStorage.getItem("user_id"));
@@ -117,7 +119,7 @@ const Form = () => {
 
           try {
             // Send the formatted data to Supabase
-            const { data, error } = await supabase
+            const { error } = await supabase
               .from("Form")
               .insert([formattedData]);
 
@@ -126,15 +128,16 @@ const Form = () => {
             }
 
             // Log or use the returned data as needed
-            console.log("Inserted Data:", data);
 
             // Reset the form fields
             form.resetFields();
             setCheckedItems({});
             message.success("Form submitted successfully!");
+            setTimeout(() => {
+              navigate("/dailyUpdates", { replace: true });
+            }, 1000);
           } catch (error) {
             console.error("Error inserting data:", error);
-            message.error("Failed to submit form.");
           }
         } else {
           console.error("User ID is null");

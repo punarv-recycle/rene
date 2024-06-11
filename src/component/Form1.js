@@ -3,6 +3,7 @@ import { Form as AntdForm, Input, Button, Checkbox, Radio, message } from 'antd'
 import { v4 as uuidv4 } from 'uuid';
 import Head from './Head';
 import supabase from "./utils"; // Make sure the path is correct
+import { useNavigate } from 'react-router-dom';
 
 const { Item } = AntdForm;
 
@@ -22,6 +23,7 @@ const Form1 = () => {
   const [form] = AntdForm.useForm();
   const [checkedItems, setCheckedItems] = useState({});
   const [userId, setUserId] = useState(null);
+  const navigate = useNavigate(); // Use useNavigate hook
 
   useEffect(() => {
     setUserId(localStorage.getItem("user_id"));
@@ -59,6 +61,9 @@ const Form1 = () => {
         form.resetFields();
         setCheckedItems({});
         message.success('Form submitted successfully!');
+        setTimeout(() => {
+          navigate("/sale", { replace: true });
+        }, 1000);
       } catch (error) {
         console.error('Error inserting data:', error);
         message.error('Failed to submit form.');
@@ -127,7 +132,12 @@ const Form1 = () => {
         <Item label="Pin code (పిన్ కోడ్)" name="pinCode" rules={[{ required: true, message: 'Please enter your pin code' }]}>
           <Input placeholder="Enter Pin Code" />
         </Item>
-        <Item label="Mobile number (మొబైల్ నంబర్)" name="mobileNumber" rules={[{ required: true, message: 'Please enter your mobile number' }]}>
+        <Item label="Mobile number (మొబైల్ నంబర్)" name="mobileNumber" rules={[
+    { 
+      pattern: /^[6-9]\d{9}$/,
+      message: "Please enter a valid 10-digit mobile number starting with 6, 7, 8, or 9",
+    },
+  ]}>
           <Input placeholder="Enter Mobile Number" />
         </Item>
         <Item label="Pickup timings (చెత్త సేకరించుకోవలసిన సమయం)" name="pickupTimings" rules={[{ required: true, message: 'Please select pickup timings' }]}>

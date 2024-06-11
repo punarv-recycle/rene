@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Button, Table } from "antd";
 import supabase from "./utils"; // Make sure the path is correct
 import { Link } from "react-router-dom";
-import { RiAddLine } from "react-icons/ri";
 import Head from "./Head";
 
 const DailyUpdates = () => {
@@ -290,8 +289,7 @@ const DailyUpdates = () => {
             to="/dailyUpdatesform"
             style={{ color: "black", textDecoration: "none" }}
           >
-            <Button style={{ display: "flex", alignItems: "center" }}>
-              <RiAddLine style={{ marginRight: "8px" }} />
+            <Button type="primary" style={{ display: "flex", alignItems: "center" }}>
               New Update
             </Button>
           </Link>
