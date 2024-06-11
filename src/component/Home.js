@@ -11,10 +11,6 @@ const Home = () => {
     return <Navigate replace to="/login" />;
   }
 
-  if (!localStorage.getItem("token")) {
-    return <Navigate replace to="/login" />;
-  }
-
   return (
     <>
     <Head/>
