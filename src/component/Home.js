@@ -24,7 +24,7 @@ const Home = () => {
             Join us in making the city cleaner and greener by contributing to our waste collection and management program.
           </p>
           <Link to="/requestform">
-            <button className="hero-btn">Raise A Request</button>
+            <button className="hero-btn">Contribute Waste</button>
           </Link>
           <p className="hero-optimise">Sustainability</p>
         </div>
@@ -57,9 +57,9 @@ const Home = () => {
         </Section>
         <Section>
           <h2>Contact Us</h2>
-          <p>Founders: Saravanan Rajagopalan / Padmaja V</p>
+          <p>Founders: Padmaja V / Saravanan R </p>
           <p>Jattu Ashramam, Rayagada Road, Parvathipuram, Vizianagaram (Dt), Andhra Pradesh-535502</p>
-          <p>Phone: +91-86672 37345, +91-94408 99365</p>
+          <p>Phone: +91-94408 99365, +91-86672 37345</p>
         </Section>
       </Content>
     </>
