@@ -1,0 +1,126 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum Status {
+  PENDING
+  APPROVED
+}
+
+// Schema for the first form
+model Form {
+  id                Int      @id @default(autoincrement())
+  uuid              String   @unique
+  user_id           String
+  date              DateTime
+  time              String
+  name              String
+  broken_glass      Float?
+  glass_bottles     Float?
+  footwear          Float?
+  old_clothes       Float?
+  thermocol         Float?
+  sponge            Float?
+  e_waste           Float?
+  iron              Float?
+  steel             Float?
+  aluminium         Float?
+  bb                Float?
+  occ               Float?
+  old_books         Float?
+  bakelite          Float?
+  pet               Float?
+  ppe               Float?
+  hdpe              Float?
+  ldpe              Float?
+  pvc               Float?
+  old_toys          Float?
+  raffia            Float?
+  debris            Float?
+  wood              Float?
+  pipes             Float?
+  tender_coconut    Float?
+  dry_coconut_fiber Float?
+  banana_handles    Float?
+  temple_waste      Float?
+  bagasse           Float?
+  agri_waste        Float?
+  twigs             Float?
+  leaves            Float?
+  fruits            Float?
+  vegetables        Float?
+  cow_dung          Float?
+  food              Float?
+}
+
+// Schema for the second form
+model Form1 {
+  id                Int      @id @default(autoincrement())
+  uuid              String   @unique
+  user_id           String
+  status            Status   @default(PENDING)
+  full_name         String
+  email             String
+  organisation_type String
+  house_no          String
+  street_name       String
+  city_name         String
+  mandal            String
+  district          String
+  pin_code          String
+  mobile_number     String
+  pickup_timings    String
+  pickup_date       DateTime
+  dry_waste         String[]
+  wet_waste         String[]
+}
+
+// Schema for the third form
+model Form2 {
+  id                 Int      @id @default(autoincrement())
+  uuid               String   @unique
+  user_id            String
+  date               DateTime
+  time               String
+  buyer_name         String
+  organisation_name  String
+  address            String
+  gst                String?
+  aadhar_card_number String?
+  pan_card_number    String?
+  email              String
+  mobile_number      String
+  broken_glass       Json?
+  glass_bottles      Json?
+  footwear           Json?
+  old_clothes        Json?
+  thermocol          Json?
+  sponge             Json?
+  e_waste            Json?
+  iron               Json?
+  steel              Json?
+  aluminium          Json?
+  bb                 Json?
+  occ                Json?
+  pet                Json?
+  ppe                Json?
+  hdpe               Json?
+  ldpe               Json?
+  old_toys           Json?
+  raffia             Json?
+  compost            Json?
+  cocopeat           Json?
+  total_sale_amount  Float
+}
