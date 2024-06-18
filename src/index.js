@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'antd/dist/reset.css';
-import { AuthProvider } from './component/AuthContext';
+// import { AuthProvider } from './component/AuthContext';
 import { BrowserRouter } from "react-router-dom";
 
 
@@ -13,9 +13,7 @@ root.render(
 
   <React.StrictMode>
     <BrowserRouter>
-    <AuthProvider>
     <App />
-    </AuthProvider>
     </BrowserRouter>
   </React.StrictMode>
 

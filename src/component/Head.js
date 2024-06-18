@@ -9,11 +9,10 @@ import { FiMenu, FiX } from "react-icons/fi";
 import { TbCoinRupee } from "react-icons/tb";
 import { MdOutlinePendingActions } from "react-icons/md";
 import { FaHistory } from "react-icons/fa";
-import { useAuth } from "./AuthContext"; // Ensure the path is correct
 import supabase from "./utils";
 
 const Head = () => {
-  const { role } = useAuth();
+  const  role  = localStorage.getItem("role");
   // console.log(role)
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
@@ -22,6 +21,7 @@ const Head = () => {
     navigate("/login");
     localStorage.removeItem('user');
     localStorage.removeItem('token');
+    localStorage.removeItem('role');
   };
 
   return (

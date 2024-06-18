@@ -1,11 +1,16 @@
-
-import React from "react";
+import React, { useEffect } from "react";
 import banner from "../assets/images/banner2.jpg";
 import styled from "styled-components";
 import { Link, Navigate } from "react-router-dom";
 import Head from './Head';
 
 const Home = () => {
+  useEffect(() => {
+    if (!localStorage.getItem("hasReloaded")) {
+      localStorage.setItem("hasReloaded", "true");
+      window.location.reload();
+    }
+  }, []);
 
   if (!localStorage.getItem("token")) {
     return <Navigate replace to="/login" />;
@@ -13,7 +18,7 @@ const Home = () => {
 
   return (
     <>
-    <Head/>
+      <Head/>
       <Herobanner>
         <div className="matter-div">
           <p className="hero-caption">PUNARV Charitable Trust</p>
@@ -23,9 +28,14 @@ const Home = () => {
           <p className="hero-para">
             Join us in making the city cleaner and greener by contributing to our waste collection and management program.
           </p>
+          <div className="button-container">
           <Link to="/requestform">
             <button className="hero-btn">Contribute Waste</button>
           </Link>
+          <Link to="/volunteerform">
+            <button className="hero-btn">Become a Volunteer</button>
+          </Link>
+        </div>
           <p className="hero-optimise">Sustainability</p>
         </div>
         <img src={banner} alt="banner" className="hero-banner-img" />
@@ -68,6 +78,166 @@ const Home = () => {
 
 export default Home;
 
+// const Herobanner = styled.div`
+//   position: relative;
+//   padding: 20px;
+//   text-align: left;
+
+//   .matter-div {
+//     margin-bottom: 20px;
+//     margin-left: 20px;
+//   }
+
+//   .hero-caption {
+//     color: #228b22;
+//     font-weight: 600;
+//     font-size: 40px;
+//   }
+
+//   .hero-heading {
+//     font-weight: 700;
+//     margin-bottom: 23px;
+//     margin-top: 30px;
+//     font-size: 70px;
+//   }
+
+//   .hero-para {
+//     font-size: 22px;
+//     font-family: Alegreya;
+//     line-height: 35px;
+//     width: 500px;
+//   }
+
+//   .button-container {
+//     display: flex;
+//     flex-wrap: wrap;
+//     gap: 20px;
+//     margin-top: 45px;
+//   }
+
+//   .hero-btn {
+//     margin-top: 45px;
+//     text-decoration: none;
+//     width: 300px;
+//     text-align: center;
+//     background: #228b22;
+//     padding: 14px;
+//     font-size: 22px;
+//     text-transform: none;
+//     color: white;
+//     border-radius: 4px;
+//     border: 0px;
+//   }
+
+//   .hero-optimise {
+//     font-weight: 600;
+//     color: #228b22;
+//     font-size: 100px;
+//     opacity: 0.1;
+//     margin-right: 20px;
+//   }
+
+//   .hero-banner-img {
+//     margin-top: 20px;
+//     width: 100%;
+//     max-width: 600px;
+//     display: block; /* Ensure the image is displayed */
+//   }
+
+//   @media screen and (max-width: 1350px) {
+//     .hero-banner-img {
+//       max-width: 500px;
+//     }
+
+//     .hero-optimise {
+//       font-size: 150px;
+//     }
+//   }
+
+//   @media screen and (max-width: 1082px) {
+//     .hero-banner-img {
+//       display: none; /* Hide the image */
+//     }
+//   }
+
+//   @media screen and (max-width: 768px) {
+//     .matter-div {
+//       margin-left: 0;
+//       text-align: center;
+//     }
+
+//     .hero-caption {
+//       font-size: 30px;
+//     }
+
+//     .hero-heading {
+//       font-size: 50px;
+//     }
+
+//     .hero-para {
+//       width: 100%;
+//       padding: 0 20px;
+//     }
+
+//     .hero-btn {
+//       width: 300px;
+//     }
+
+//     .hero-optimise {
+//       display: none;
+//     }
+//   }
+
+//   @media screen and (max-width: 568px) {
+//     .hero-heading {
+//       font-size: 40px;
+//     }
+
+//     .hero-para {
+//       font-size: 18px;
+//       line-height: 28px;
+//     }
+
+//     .hero-btn {
+//       width: 300px;
+//     }
+
+//     .hero-banner-img {
+//       max-width: 350px;
+//     }
+//   }
+// `;
+
+// const Content = styled.div`
+//   padding: 20px;
+//   max-width: 1200px;
+//   margin: 0 auto;
+//   text-align: left;
+
+//   h2 {
+//     color: #228b22;
+//     font-size: 36px;
+//     margin-bottom: 10px;
+//   }
+
+//   p, ul {
+//     font-size: 18px;
+//     line-height: 28px;
+//     margin-bottom: 20px;
+//   }
+
+//   ul {
+//     padding-left: 20px;
+//   }
+
+//   li {
+//     margin-bottom: 10px;
+//   }
+// `;
+
+// const Section = styled.section`
+//   margin-bottom: 40px;
+// `;
 const Herobanner = styled.div`
   position: relative;
   padding: 20px;
@@ -98,8 +268,14 @@ const Herobanner = styled.div`
     width: 500px;
   }
 
-  .hero-btn {
+  .button-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
     margin-top: 45px;
+  }
+
+  .hero-btn {
     text-decoration: none;
     width: 300px;
     text-align: center;
@@ -110,6 +286,7 @@ const Herobanner = styled.div`
     color: white;
     border-radius: 4px;
     border: 0px;
+    flex: 1 1 auto;
   }
 
   .hero-optimise {
@@ -162,8 +339,13 @@ const Herobanner = styled.div`
       padding: 0 20px;
     }
 
+    .button-container {
+      flex-direction: column;
+      align-items: center;
+    }
+
     .hero-btn {
-      width: 250px;
+      width: 100%;
     }
 
     .hero-optimise {
@@ -182,7 +364,7 @@ const Herobanner = styled.div`
     }
 
     .hero-btn {
-      width: 200px;
+      width: 100%;
     }
 
     .hero-banner-img {
@@ -190,7 +372,6 @@ const Herobanner = styled.div`
     }
   }
 `;
-
 
 const Content = styled.div`
   padding: 20px;
