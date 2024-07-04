@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Button, Table, message } from 'antd';
 import supabase from './utils'; // Ensure the path is correct
 import { Link } from 'react-router-dom';
-import Head from './Head';
 
 const VolunteerTable = () => {
   const [data, setData] = useState([]);
@@ -73,7 +72,6 @@ const VolunteerTable = () => {
 
   return (
     <>
-      <Head />
       <div
         style={{
           border: '1px solid #d9d9d9',
@@ -86,10 +84,10 @@ const VolunteerTable = () => {
           style={{
             display: 'flex',
             flexDirection: 'row',
-            justifyContent: 'space-between',
+            justifyContent: 'flex-end',
           }}
         >
-          <h2 style={{ marginBottom: '16px', marginTop: '0' }}>Volunteer Data</h2>
+          {/* <h2 style={{ marginBottom: '16px', marginTop: '0' }}>Volunteer Data</h2> */}
           <Link
             to="/volunteerform"
             style={{ color: 'black', textDecoration: 'none' }}

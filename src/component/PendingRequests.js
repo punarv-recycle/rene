@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Table, Button, message, Grid, Tabs, DatePicker } from "antd";
 import supabase from "./utils"; // Make sure the path is correct
-import Head from "./Head";
 import { Link } from "react-router-dom";
 
 const { useBreakpoint } = Grid;
@@ -122,10 +121,9 @@ const PendingRequests = () => {
 
   return (
     <>
-      <Head />
       <div style={{ border: "1px solid #d9d9d9", padding: "16px", borderRadius: "4px", marginBottom: "16px" }}>
-        <div style={{display:"Flex",flexDirection:"row",justifyContent:"space-between"}}>
-      <h2 style={{ marginBottom: "16px", marginTop: "0" }}>Requests</h2>
+        <div style={{display:"Flex",flexDirection:"row",justifyContent:"flex-end"}}>
+      {/* <h2 style={{ marginBottom: "16px", marginTop: "0" }}>Requests</h2> */}
       <Link to="/requestform" style={{color:'black',textDecoration:"none"}}>
       <Button type='primary' style={{ display: "flex", alignItems: "center" }}>
         

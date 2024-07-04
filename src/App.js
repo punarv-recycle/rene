@@ -15,6 +15,7 @@ import DailyUpdates from "./component/DailyUpdates";
 import SalesTable from "./component/SalesTable";
 import VolunteerForm from "./component/VolunteerForm";
 import VolunteerTable from "./component/VolunteerTable";
+import Admin from "./component/Admin";
 // Function to simulate authentication
 const isAuthenticated = () => {
   // Check if a token exists in local storage
@@ -39,29 +40,20 @@ const App = () => {
           path="/dailyUpdatesform"
           element={<ProtectedRoute element={Form} />}
         />
-                <Route
+        <Route
           path="/volunteerform"
           element={<ProtectedRoute element={VolunteerForm} />}
-        />
-                <Route
-          path="/volunteer"
-          element={<ProtectedRoute element={VolunteerTable} />}
         />
         <Route path="/salesform" element={<ProtectedRoute element={Form2} />} />
         <Route
           path="/requestform"
           element={<ProtectedRoute element={Form1} />}
         />
-        <Route path="/sale" element={<ProtectedRoute element={SalesTable} />} />
         <Route path="/home" element={<ProtectedRoute element={Home} />} />
-        <Route
-          path="/pending-requests"
-          element={<ProtectedRoute element={PendingRequests} />}
-        />
         <Route path="/history" element={<ProtectedRoute element={History} />} />
         <Route
-          path="/dailyUpdates"
-          element={<ProtectedRoute element={DailyUpdates} />}
+          path="/admin"
+          element={<ProtectedRoute element={Admin} />}
         />
         <Route path="*" element={<NotFound />} />
       </Routes>

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Button, Table } from "antd";
 import supabase from "./utils"; // Make sure the path is correct
 import { Link } from "react-router-dom";
-import Head from "./Head";
 
 const DailyUpdates = () => {
   const [dailyUpdates, setDailyUpdates] = useState([]);
@@ -266,7 +265,6 @@ const DailyUpdates = () => {
 
   return (
     <>
-      <Head />
       <div
         style={{
           border: "1px solid #d9d9d9",
@@ -279,12 +277,12 @@ const DailyUpdates = () => {
           style={{
             display: "Flex",
             flexDirection: "row",
-            justifyContent: "space-between",
+            justifyContent: "flex-end",
           }}
         >
-          <h2 style={{ marginBottom: "16px", marginTop: "0" }}>
+          {/* <h2 style={{ marginBottom: "16px", marginTop: "0" }}>
             Daily Updates
-          </h2>
+          </h2> */}
           <Link
             to="/dailyUpdatesform"
             style={{ color: "black", textDecoration: "none" }}

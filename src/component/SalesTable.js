@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Button, Table, message } from 'antd';
 import supabase from './utils'; // Ensure the path is correct
 import { Link } from 'react-router-dom';
-import Head from './Head';
 
 const wasteTypes = [
   "broken_glass",
@@ -118,7 +117,6 @@ const SalesTable = () => {
 
   return (
     <>
-      <Head />
       <div
         style={{
           border: '1px solid #d9d9d9',
@@ -131,10 +129,10 @@ const SalesTable = () => {
           style={{
             display: 'flex',
             flexDirection: 'row',
-            justifyContent: 'space-between',
+            justifyContent: 'flex-end',
           }}
         >
-          <h2 style={{ marginBottom: '16px', marginTop: '0' }}>Sales Data</h2>
+          {/* <h2 style={{ marginBottom: '16px', marginTop: '0' }}>Sales Data</h2> */}
           <Link
             to="/salesform"
             style={{ color: 'black', textDecoration: 'none' }}

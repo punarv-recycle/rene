@@ -19,7 +19,7 @@ const Basepage = () => {
 
   return (
     <Container style={{backgroundImage:""}}>
-      <img src={Logo} alt="Workout-trainer" />
+      <img src={Logo} alt="René" />
       <div>
         <button type="button" onClick={clickhandler}>
           Login

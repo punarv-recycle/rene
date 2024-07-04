@@ -3,32 +3,29 @@ import { styled } from "styled-components";
 import Logo from "../assets/images/logo2.png";
 import { Link, useNavigate } from "react-router-dom";
 import { IoIosHome, IoIosLogOut } from "react-icons/io";
-import { BiLogoDailymotion } from "react-icons/bi";
 import { CiSquarePlus } from "react-icons/ci";
 import { FiMenu, FiX } from "react-icons/fi";
-import { TbCoinRupee } from "react-icons/tb";
-import { MdOutlinePendingActions } from "react-icons/md";
 import { FaHistory } from "react-icons/fa";
+import { RiAdminFill } from "react-icons/ri";
 import supabase from "./utils";
 
 const Head = () => {
-  const  role  = localStorage.getItem("role");
+  const role = localStorage.getItem("role");
   // console.log(role)
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
   const handleLogout = async () => {
     await supabase.auth.signOut();
     navigate("/login");
-    localStorage.removeItem('user');
-    localStorage.removeItem('token');
-    localStorage.removeItem('role');
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
   };
 
   return (
     <Nav>
-      <Link to="/">
-        <LogoImg src={Logo} alt="Workout Trainer" />
-      </Link>
+        <LogoImg src={Logo} alt="René" />
+      
       <Hamburger onClick={() => setMenuOpen(!menuOpen)}>
         {menuOpen ? <FiX size={30} /> : <FiMenu size={30} />}
       </Hamburger>
@@ -39,27 +36,13 @@ const Head = () => {
         </NavItem>
         {role ? (
           role === "OWNER" ? (
-            <>
-              <NavItem to="/dailyUpdates" onClick={() => setMenuOpen(false)}>
-                <BiLogoDailymotion size={25} className="icons" />
-                <span className="text">Daily update</span>
-              </NavItem>
-              <NavItem to="/sale" onClick={() => setMenuOpen(false)}>
-                <TbCoinRupee size={25} className="icons" />
-                <span className="text">Sale</span>
-              </NavItem>
-              <NavItem to="/pending-requests" onClick={() => setMenuOpen(false)}>
-                <MdOutlinePendingActions size={25} className="icons" />
-                <span className="text">Request</span>
-              </NavItem>
-              <NavItem to="/volunteer" onClick={() => setMenuOpen(false)}>
-                <MdOutlinePendingActions size={25} className="icons" />
-                <span className="text">Volunteer</span>
-              </NavItem>
-            </>
+            <NavItem to="/admin" onClick={() => setMenuOpen(false)}>
+              <RiAdminFill size={25} className="icons" />
+              <span className="text">Admin</span>
+            </NavItem>
           ) : (
             <>
-             <NavItem to="/requestform" onClick={() => setMenuOpen(false)}>
+              <NavItem to="/requestform" onClick={() => setMenuOpen(false)}>
                 <CiSquarePlus size={25} className="icons" />
                 <span className="text">Request</span>
               </NavItem>
@@ -115,7 +98,6 @@ const Hamburger = styled.div`
   }
 `;
 
-
 const NavLinks = styled.ul`
   display: flex;
   list-style-type: none;
@@ -135,7 +117,9 @@ const NavLinks = styled.ul`
     padding: 20px 0;
     transition: all 0.3s ease;
     transform: ${({ menuopen }) =>
-      menuopen ? "translateY(0)" : "translateY(-200%)"}; // Use menuopen instead of menuOpen
+      menuopen
+        ? "translateY(0)"
+        : "translateY(-200%)"}; // Use menuopen instead of menuOpen
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   }
 `;
