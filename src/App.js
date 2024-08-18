@@ -23,6 +23,7 @@ const isAuthenticated = () => {
 
   // Return true if a token exists and is not expired, otherwise return false
   return token !== null;
+  
 };
 
 // ProtectedRoute component to handle protected routes
